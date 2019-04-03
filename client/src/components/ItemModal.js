@@ -35,6 +35,7 @@ class ItemModal extends Component {
       name: this.state.name
     };
     this.props.addItem(newItem);
+    this.setState({ name: '' });
   };
   render() {
     return (
@@ -52,6 +53,7 @@ class ItemModal extends Component {
                   type="text"
                   name="name"
                   id="item"
+                  value={this.state.name}
                   placeholder="Add shopping item"
                   onChange={this.onChange}
                 />
