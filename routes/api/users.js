@@ -10,11 +10,15 @@ const User = require('../../models/User');
 // @access   Public
 router.post('/', (req, res) => {
   const { name, email, password } = req.body;
+
   if (!name || !email || !password) {
     return res.status(400).json({ msg: 'Please enter all fields' });
   }
+
   User.findOne({ email }).then(user => {
-    if (user) res.status(400).json({ msg: 'User already exists' });
+    if (user) {
+      return res.status(400).json({ msg: 'User already exists' });
+    }
 
     const newUser = new User({
       name,
@@ -41,7 +45,5 @@ router.post('/', (req, res) => {
     });
   });
 });
-
-// TODO: make put to edit item
 
 module.exports = router;
