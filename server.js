@@ -1,7 +1,10 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-const db = require('./config/keys').mongoURI;
+const config = require('config');
+
+// DB config
+const db = config.get('mongoURI');
 
 const app = express();
 
